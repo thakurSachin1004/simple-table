@@ -17,13 +17,14 @@ const StockList = () => {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const createRowData = (rowData, columns) => {
     const data = rowData.map((elt, index) => {
       const cellData = elt.split(",");
       const colData = {};
-      columns.map((header, i) => {
+      columns.forEach((header, i) => {
         colData[header.field] = cellData[i];
       });
       colData.id = index;
@@ -52,7 +53,7 @@ const StockList = () => {
   };
 
   const handleSearch = (text) => {
-    if (text.length == 0) {
+    if (text.length === 0) {
       setSearchedData(stocksData);
       return;
     }
